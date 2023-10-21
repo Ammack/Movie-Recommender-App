@@ -19,7 +19,7 @@ movies_list = pd.read_pickle(open("movies.pkl", "rb"))
 similarity = pd.read_pickle(open("similarity.pkl", "rb"))
 
 def poster(movie_id):
-    url = "https://api.themoviedb.org/3/movie/{}?api_key=8265bd1679663a7ea12ac168da84d2e8&language=en-US".format(movie_id)
+    url = "https://api.themoviedb.org/3/movie/{}?api_key=6abaf8df5f836956a664cb7de3334d7e&language=en-US".format(movie_id)
     data = requests.get(url)
     data = data.json()
     poster_path = data['poster_path']
@@ -29,7 +29,7 @@ def poster(movie_id):
 
 def recommend(movie):
     movie_index = movies_list[movies_list["title"] == movie].index[0]
-    top_similarities = sorted(list(enumerate(similarity[movie_index])), reverse=True, key=lambda x: x[1])[1:21]
+    top_similarities = sorted(list(enumerate(similarity[movie_index])), reverse = True, key = lambda x:x[1])[1:16]
     recommendation = []
     posters = []
     for i in top_similarities:
